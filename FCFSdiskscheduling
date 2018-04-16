@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+	int current , n ;
+	int cylinder[30];
+	int dis , i;
+	int distance[30];
+	int total=0;
+	int final_total ;
+	printf("Enter the cylinder number at which the request is currently served:");
+	scanf("%d",&current);
+	printf("Enter the number of requests to be served on cylinders:");
+	scanf("%d",&n);
+	printf("Enter the numbered cylinders in the provided order:");
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d",&cylinder[i]);
+	}
+	//processing for FCFS disk scheduling algorithm
+	//distance from the current position to the first cylinder request
+	dis=cylinder[1]-current;
+	if(dis<0)
+		{
+			dis=dis*(-1);
+		}
+	//distances from cylinder to cylinder
+	for(i=1;i<n;i++)
+	{
+		distance[i]=cylinder[i+1] - cylinder[i] ;
+		if(distance[i]<0)
+		{
+			distance[i]=distance[i]*(-1);
+		}
+		total = total + distance[i];
+	}
+	final_total= total + dis;
+	printf("the total distance covered is:%d",final_total);
+	getch();
+}
